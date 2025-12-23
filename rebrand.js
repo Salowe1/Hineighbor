@@ -1,4 +1,39 @@
-/**
+(function() {
+    // 1. INJECTION DU CSS
+    const css = `
+        /* Vos styles personnalisés Hi Neighbor */
+        :root {
+            --brand-color: #2D5BFF; /* Bleu Hi Neighbor */
+        }
+
+        /* Change la couleur des boutons et liens orange */
+        .btn-primary, .button, a {
+            background-color: var(--brand-color) !important;
+            color: white !important;
+        }
+
+        /* Masquer le logo original pour mettre le vôtre (exemple) */
+        .logo img {
+            display: none;
+        }
+        
+        /* Ajouter un badge "Hi Neighbor" */
+        .header::after {
+            content: 'Hi Neighbor Mode Active';
+            color: var(--brand-color);
+            font-weight: bold;
+            padding: 10px;
+        }
+    `;
+
+    const styleHeadline = document.createElement('style');
+    styleHeadline.type = 'text/css';
+    styleHeadline.appendChild(document.createTextNode(css));
+    document.head.appendChild(styleHeadline);
+
+    // 2. VOTRE CODE DE REBRANDING TEXTUEL EXISTANT ICI...
+    // (Le code avec le dictionnaire de remplacement que nous avons vu)
+})();/**
  * HI NEIGHBOR - UNIVERSAL REBRANDING SCRIPT
  * Integration of all provided AlloVoisins documentation rules.
  */
