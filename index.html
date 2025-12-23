@@ -3,102 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hi Neighbor - Centre d'Assistance</title>
+    <title>Centre d'Aide Intégral – Hi Neighbor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --brand: #2D5BFF; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        :root { --brand: #2D5BFF; --brand-hover: #1A44D6; --brand-light: #F2F8FF; --danger: #EF4444; }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; color: #1f2937; }
         .bg-brand { background-color: var(--brand); }
         .text-brand { color: var(--brand); }
-        .accordion-content { display: none; }
-        .accordion-content.active { display: block; }
+        .sidebar-item { border-left: 3px solid transparent; transition: all 0.2s; cursor: pointer; display: block; text-decoration: none; color: #6b7280; }
+        .sidebar-item:hover { background-color: var(--brand-light); color: var(--brand); }
+        .sidebar-item-active { border-left: 3px solid var(--brand); background-color: var(--brand-light); color: var(--brand); font-weight: 600; }
+        .card-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
+        section { scroll-margin-top: 80px; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-white">
 
-    <header class="bg-brand text-white py-12 px-4 shadow-lg">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-4xl font-bold mb-4">Hi Neighbor Support</h1>
-            <p class="text-xl opacity-90 mb-8">Comment pouvons-nous vous aider aujourd'hui ?</p>
-            <div class="relative max-w-xl mx-auto">
-                <input type="text" id="searchInput" placeholder="Rechercher une réponse (ex: KYC, Avis, Paiement)..." 
-                       class="w-full p-4 rounded-full text-gray-900 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-300">
-                <i class="fa fa-search absolute right-5 top-5 text-gray-400"></i>
+    <header class="border-b border-gray-100 sticky top-0 bg-white/90 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl font-black text-brand tracking-tighter italic">HI NEIGHBOR</span>
+                <span class="bg-gray-100 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest text-gray-500">Aide</span>
             </div>
+            <nav class="hidden md:flex gap-6 text-sm font-semibold">
+                <a href="#demande" class="hover:text-brand">Ma Demande</a>
+                <a href="#paiement" class="hover:text-brand">Paiements</a>
+                <a href="#securite" class="hover:text-brand text-red-500">Sécurité</a>
+            </nav>
+            <button class="bg-brand text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-brand-hover transition-all">
+                NOUS CONTACTER
+            </button>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto py-12 px-4">
+    <section class="bg-brand py-16 px-6 text-white text-center">
+        <h1 class="text-4xl font-extrabold mb-4 italic tracking-tight">Comment pouvons-nous vous aider ?</h1>
+        <p class="text-blue-100 mb-8 max-w-xl mx-auto italic">Trouvez toutes les réponses sur les paiements, la sécurité et la gestion de vos avis.</p>
+        <div class="max-w-2xl mx-auto relative">
+            <input type="text" placeholder="Ex: Comment récupérer mon solde, modifier un avis..." class="w-full py-5 px-14 rounded-2xl text-gray-900 focus:outline-none shadow-2xl text-lg">
+            <i class="fa fa-search absolute left-5 top-6 text-gray-400 text-xl"></i>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:row md:flex-row gap-12">
         
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa fa-star text-brand mr-3"></i> Gestion des Avis</h2>
-            <div class="space-y-4">
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-                    <button onclick="toggleAccordion('avis1')" class="w-full text-left p-4 font-semibold flex justify-between items-center">
-                        Puis-je répondre à un avis ?
-                        <i class="fa fa-chevron-down text-gray-400"></i>
-                    </button>
-                    <div id="avis1" class="accordion-content p-4 border-t border-gray-100 text-gray-600 bg-gray-50">
-                        Oui. Votre réponse sera affichée sous l'avis et visible sur votre profil. Vous pouvez supprimer votre réponse à tout moment (mais pas la modifier).
+        <aside class="w-full md:w-1/4 space-y-10">
+            <div>
+                <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">L'essentiel du Voisin</h3>
+                <nav class="flex flex-col gap-1">
+                    <a href="#demande" class="sidebar-item p-3 text-sm rounded-r-lg sidebar-item-active">Poster une demande</a>
+                    <a href="#profil" class="sidebar-item p-3 text-sm rounded-r-lg">Profil & Avis</a>
+                </nav>
+            </div>
+            <div>
+                <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Argent & Solde</h3>
+                <nav class="flex flex-col gap-1">
+                    <a href="#paiement" class="sidebar-item p-3 text-sm rounded-r-lg">Paiements & Remboursements</a>
+                    <a href="#kyc" class="sidebar-item p-3 text-sm rounded-r-lg">Vérification d'identité (KYC)</a>
+                </nav>
+            </div>
+            <div>
+                <h3 class="text-[10px] font-bold text-red-400 uppercase tracking-[0.2em] mb-4">Sécurité & Confiance</h3>
+                <nav class="flex flex-col gap-1">
+                    <a href="#securite" class="sidebar-item p-3 text-sm rounded-r-lg font-bold text-red-600">Signalement & Abus</a>
+                    <a href="#reglemente" class="sidebar-item p-3 text-sm rounded-r-lg">Activités réglementées</a>
+                    <a href="#mobile" class="sidebar-item p-3 text-sm rounded-r-lg">Vérification Mobile</a>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="w-full md:w-3/4 space-y-20">
+
+            <section id="demande">
+                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">01</span>
+                    Poster une demande
+                </h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-6 border border-gray-100 rounded-2xl card-shadow">
+                        <h4 class="font-bold mb-3 italic text-brand">Règles d'or</h4>
+                        <ul class="text-sm space-y-3 text-gray-600 italic">
+                            <li>• <strong>Demandes uniquement :</strong> Ne postez pas d'offres de services ici.</li>
+                            <li>• <strong>Sécurité :</strong> Pas de coordonnées (téléphone, mail) directes.</li>
+                            <li>• <strong>Légalité :</strong> Objets acquis légalement uniquement.</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 border border-gray-100 rounded-2xl card-shadow">
+                        <h4 class="font-bold mb-3 italic text-brand">Astuces de validation</h4>
+                        <p class="text-sm text-gray-600 italic leading-relaxed">
+                            Si votre catégorie n'existe pas, choisissez la plus proche et faites une "Suggestion" via le formulaire. 
+                            Vous pouvez aussi <strong>changer l'adresse</strong> de votre demande sans modifier votre profil (pratique pour les vacances !).
+                        </p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa fa-shield-alt text-brand mr-3"></i> Confiance et Sécurité (KYC)</h2>
-            <div class="space-y-4">
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-                    <button onclick="toggleAccordion('kyc1')" class="w-full text-left p-4 font-semibold flex justify-between items-center">
-                        Pourquoi mon document KYC est-il refusé ?
-                        <i class="fa fa-chevron-down text-gray-400"></i>
-                    </button>
-                    <div id="kyc1" class="accordion-content p-4 border-t border-gray-100 bg-gray-50">
-                        <table class="w-full text-sm">
-                            <tr class="bg-gray-200"><th class="p-2 text-left">Motif</th><th class="p-2 text-left">Solution</th></tr>
-                            <tr><td class="p-2 border-b">Document expiré</td><td class="p-2 border-b">Utilisez une pièce d'identité valide.</td></tr>
-                            <tr><td class="p-2 border-b">Mauvaise qualité</td><td class="p-2 border-b">La photo doit être nette et lisible.</td></tr>
-                        </table>
+            <section id="profil">
+                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">02</span>
+                    Profil & Avis
+                </h2>
+                <div class="bg-gray-50 p-8 rounded-3xl">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div>
+                            <h4 class="font-bold text-sm uppercase mb-4 tracking-wider">Consulter</h4>
+                            <p class="text-xs text-gray-500 italic">Cliquez sur le prénom ou la photo d'un voisin pour voir son taux de réponse, ses photos et ses avis globaux.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm uppercase mb-4 tracking-wider">Répondre</h4>
+                            <p class="text-xs text-gray-500 italic">Vous pouvez répondre à un avis reçu. La réponse est publique. Vous pouvez la supprimer (via les 3 points) mais pas la modifier.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm uppercase mb-4 tracking-wider">Modifier</h4>
+                            <p class="text-xs text-gray-500 italic">En tant qu'auteur d'un avis, vous pouvez le modifier à tout moment via l'icône <i class="fa fa-plus-circle"></i> dans la conversation.</p>
+                        </div>
                     </div>
                 </div>
+            </section>
+
+            <section id="paiement">
+                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">03</span>
+                    Paiements & Remboursements
+                </h2>
+                <div class="space-y-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1 bg-blue-600 text-white p-8 rounded-3xl">
+                            <h4 class="text-2xl font-black mb-4 italic">0% Commission</h4>
+                            <p class="text-sm text-blue-100 italic leading-relaxed">
+                                Le paiement par CB sur la messagerie est gratuit et sécurisé. L'offreur reçoit les fonds instantanément sur son solde Hi Neighbor.
+                            </p>
+                        </div>
+                        <div class="flex-1 border p-8 rounded-3xl">
+                            <h4 class="text-2xl font-black mb-4 italic text-gray-900">Remboursement</h4>
+                            <p class="text-sm text-gray-500 italic leading-relaxed">
+                                Le voisin peut vous rembourser immédiatement depuis la messagerie en utilisant son propre solde si la prestation est annulée.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 border border-orange-100 p-6 rounded-2xl flex gap-4">
+                        <i class="fa fa-shield-halved text-orange-500 text-2xl"></i>
+                        <div>
+                            <h4 class="font-bold text-orange-800 text-sm italic">Sécurité Bancaire SCA (PSD2)</h4>
+                            <p class="text-xs text-orange-700 italic mt-1">
+                                Pour tout ajout de RIB ou virement, un lien de confirmation vous sera envoyé par mail/push. <strong>Attention : le lien expire après 10 minutes.</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kyc">
+                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">04</span>
+                    Vérification d'identité (KYC)
+                </h2>
+                <div class="border rounded-3xl overflow-hidden">
+                    <div class="p-8 bg-gray-900 text-white">
+                        <p class="text-sm italic opacity-80">Réglementation européenne obligatoire pour transférer votre solde vers votre compte bancaire.</p>
+                    </div>
+                    <div class="p-8 grid md:grid-cols-2 gap-10">
+                        <div>
+                            <h4 class="font-bold mb-4 italic underline">Documents acceptés</h4>
+                            <ul class="text-sm space-y-2 text-gray-600 italic">
+                                <li>• Carte d'identité (Recto/Verso)</li>
+                                <li>• Passeport (Double page)</li>
+                                <li>• Permis de conduire (Nouveau format)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4 italic underline">Pourquoi un refus ?</h4>
+                            <ul class="text-sm space-y-2 text-gray-600 italic">
+                                <li>• <strong>Qualité :</strong> Photo floue, flash ou reflets.</li>
+                                <li>• <strong>Format :</strong> Utilisez JPG/PNG (évitez le PDF).</li>
+                                <li>• <strong>Données :</strong> Vos infos Hi Neighbor doivent être 100% identiques au document.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="securite" class="bg-red-50 p-10 rounded-[3rem] border border-red-100">
+                <h2 class="text-3xl font-black text-red-600 mb-8 italic flex items-center gap-3">
+                    <i class="fa fa-warning"></i> Signalement & Abus
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-red-800 italic underline">Harcèlement ou Arnaque</h4>
+                        <p class="text-sm text-red-700 italic leading-relaxed">
+                            Cessez toute communication. Ne donnez jamais vos coordonnées hors plateforme (WhatsApp/Email). 
+                            En cas d'urgence ou menace grave, contactez le <strong>17</strong> ou le <strong>3018</strong>.
+                        </p>
+                        <div class="bg-white p-4 rounded-xl border border-red-200">
+                            <p class="text-xs font-bold text-red-600 italic">Sanctions possibles :</p>
+                            <p class="text-[10px] text-gray-500 uppercase mt-1">Avertissement > Surveillance > Suspension 12 mois</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-red-800 italic underline">Comment signaler ?</h4>
+                        <p class="text-sm text-red-700 italic leading-relaxed">
+                            Cliquez sur les <strong>3 petits points</strong> sur n'importe quel contenu (profil, message, photo) et choisissez "Signaler un abus".
+                        </p>
+                        <ul class="text-xs space-y-2 text-red-700 italic font-medium">
+                            <li>• Capturez des preuves (screenshots)</li>
+                            <li>• Bloquez l'utilisateur immédiatement</li>
+                            <li>• Signalez sur internet-signalement.gouv.fr</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reglemente">
+                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">05</span>
+                    Activités Réglementées
+                </h2>
+                <div class="prose max-w-none text-sm text-gray-600 italic leading-relaxed space-y-4">
+                    <p>Certains services ne peuvent être proposés que par des professionnels certifiés :</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="border-l-4 border-brand p-4 bg-gray-50">
+                            <h5 class="font-bold text-gray-900">Santé & Bien-être</h5>
+                            <p class="text-xs">Médecine, Ostéopathie, Infirmerie, Optique : réservés aux diplômés d'État.</p>
+                        </div>
+                        <div class="border-l-4 border-brand p-4 bg-gray-50">
+                            <h5 class="font-bold text-gray-900">Droit & Finance</h5>
+                            <p class="text-xs">Expert-comptable, Conseil juridique, Courtier en assurance : professions strictement encadrées.</p>
+                        </div>
+                        <div class="border-l-4 border-brand p-4 bg-gray-50">
+                            <h5 class="font-bold text-gray-900">Bâtiment</h5>
+                            <p class="text-xs">Plombier, Électricien, Maçon : nécessitent une qualification (CAP/BEP) ou 3 ans d'expérience.</p>
+                        </div>
+                        <div class="border-l-4 border-brand p-4 bg-gray-50">
+                            <h5 class="font-bold text-gray-900">Transport & Animaux</h5>
+                            <p class="text-xs">Déménagement pro, Garde d'animaux (ACACED obligatoire), Covoiturage rémunéré.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mobile">
+                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">06</span>
+                    Vérification Mobile
+                </h2>
+                <div class="bg-brand text-white p-10 rounded-[2rem] flex flex-col md:flex-row gap-10 items-center">
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold mb-4 italic">Accès à la messagerie</h4>
+                        <p class="text-sm text-blue-100 italic">
+                            Pour communiquer, vous devez valider votre mobile français. Votre numéro reste privé (sauf abonnés Premier).
+                        </p>
+                    </div>
+                    <div class="flex-1 space-y-3">
+                        <div class="bg-white/10 p-4 rounded-xl text-xs italic">1. Menu Compte > Infos Personnelles</div>
+                        <div class="bg-white/10 p-4 rounded-xl text-xs italic">2. Entrez votre mobile (SMS envoyé)</div>
+                        <div class="bg-white/10 p-4 rounded-xl text-xs italic">3. Saisissez le code à 4 chiffres</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="mt-20 py-12 border-t text-center">
+                <h3 class="text-lg font-bold mb-6 italic">Cet article vous a-t-il été utile ?</h3>
+                <div class="flex justify-center gap-4">
+                    <button class="px-10 py-3 border-2 border-brand text-brand rounded-full font-black hover:bg-brand hover:text-white transition-all">OUI</button>
+                    <button class="px-10 py-3 border-2 border-gray-200 text-gray-400 rounded-full font-black hover:border-gray-800 hover:text-gray-800 transition-all">NON</button>
+                </div>
+                <p class="mt-8 text-xs text-gray-400 font-bold uppercase tracking-[0.2em]">Vous n'avez pas trouvé ? <a href="#" class="text-brand underline">Contactez-nous</a></p>
             </div>
-        </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa fa-gavel text-brand mr-3"></i> Litiges et Signalements</h2>
-            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <p class="mb-4 text-gray-600">En cas de problème sérieux avec un Neighbor :</p>
-                <ul class="list-disc ml-6 space-y-2 text-gray-600">
-                    <li>Tentez une résolution à l'amiable via la messagerie.</li>
-                    <li>Signalez le profil via les "3 petits points".</li>
-                    <li>Conservez toutes les preuves (captures d'écran).</li>
-                </ul>
+        </div>
+    </div>
+
+    <footer class="bg-gray-50 border-t py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <span class="text-2xl font-black italic tracking-tighter text-brand">HI NEIGHBOR</span>
+            <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                <a href="#" class="hover:text-brand">Conditions Générales</a>
+                <a href="#" class="hover:text-brand">Vie Privée</a>
+                <a href="#" class="hover:text-brand">Médiation</a>
             </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-gray-900 text-white py-8 text-center">
-        <p>&copy; 2025 Hi Neighbor - Support Center</p>
-        <p class="text-sm opacity-50 mt-2">Propulsé par GitHub Pages</p>
+            <p class="text-[10px] text-gray-400 font-bold">© 2025 HI NEIGHBOR INTERACTIVE</p>
+        </div>
     </footer>
 
-    <script>
-        function toggleAccordion(id) {
-            const content = document.getElementById(id);
-            const isActive = content.classList.contains('active');
-            document.querySelectorAll('.accordion-content').forEach(el => el.classList.remove('active'));
-            if (!isActive) content.classList.add('active');
-        }
-
-        // Système de recherche simple
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
-            document.querySelectorAll('.bg-white').forEach(card => {
-                const text = card.innerText.toLowerCase();
-                card.style.display = text.includes(term) ? 'block' : 'none';
-            });
-        });
-    </script>
 </body>
 </html>
