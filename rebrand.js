@@ -1,145 +1,110 @@
 (function() {
-    // 1. INJECTION DU CSS
-    const css = `
-        /* Vos styles personnalisés Hi Neighbor */
-        :root {
-            --brand-color: #2D5BFF; /* Bleu Hi Neighbor */
-        }
-
-        /* Change la couleur des boutons et liens orange */
-        .btn-primary, .button, a {
-            background-color: var(--brand-color) !important;
-            color: white !important;
-        }
-
-        /* Masquer le logo original pour mettre le vôtre (exemple) */
-        .logo img {
-            display: none;
-        }
-        
-        /* Ajouter un badge "Hi Neighbor" */
-        .header::after {
-            content: 'Hi Neighbor Mode Active';
-            color: var(--brand-color);
-            font-weight: bold;
-            padding: 10px;
-        }
-    `;
-
-    const styleHeadline = document.createElement('style');
-    styleHeadline.type = 'text/css';
-    styleHeadline.appendChild(document.createTextNode(css));
-    document.head.appendChild(styleHeadline);
-
-    // 2. VOTRE CODE DE REBRANDING TEXTUEL EXISTANT ICI...
-    // (Le code avec le dictionnaire de remplacement que nous avons vu)
-})();/**
- * HI NEIGHBOR - UNIVERSAL REBRANDING SCRIPT
- * Integration of all provided AlloVoisins documentation rules.
- */
-(function() {
+    /**
+     * CONFIGURATION HI NEIGHBOR
+     */
     const CONFIG = {
-        brandName: "Hi Neighbor",
+        name: "Hi Neighbor",
         oldName: "AlloVoisins",
-        premiumTier: "Premium Membership",
-        standardTier: "Basic Membership",
-        supportEmail: "support@hineighbor.com",
-        accentColor: "#2D5BFF" 
+        mainColor: "#2D5BFF",
+        supportEmail: "support@hineighbor.com"
     };
 
-    const dictionary = [
-        // --- Core Identity ---
-        { old: /AlloVoisins/gi, new: CONFIG.brandName },
+    /**
+     * DICTIONNAIRE DE TRADUCTION & REBRANDING
+     * Basé sur l'intégralité des textes fournis (Litiges, KYC, Abonnements)
+     */
+    const replacements = [
+        { old: /AlloVoisins/gi, new: CONFIG.name },
         { old: /Voisin/g, new: "Neighbor" },
         { old: /Voisins/g, new: "Neighbors" },
-
-        // --- Subscriptions & Areas (Périmètres) ---
-        { old: /Abonnement Premier/gi, new: CONFIG.premiumTier },
-        { old: /Abonnement Standard/gi, new: CONFIG.standardTier },
-        { old: /Mon périmètre/gi, new: "My Activity Zone" },
-        { old: /périmètre d'intervention/gi, new: "Service Area" },
-        { old: /Devenir Premier/gi, new: "Go Premium" },
-
-        // --- Roles & Logic ---
+        { old: /Abonnement Premier/gi, new: "Premium Membership" },
+        { old: /Abonnement Standard/gi, new: "Basic Plan" },
         { old: /offreur/gi, new: "Provider" },
         { old: /demandeur/gi, new: "Requester" },
-        { old: /postez des demandes/gi, new: "post requests" },
-        { old: /proposer mes services/gi, new: "offer my services" },
-
-        // --- Payment & Banking (Mangopay/KYC) ---
-        { old: /solde AlloVoisins/gi, new: CONFIG.brandName + " balance" },
+        { old: /solde AlloVoisins/gi, new: CONFIG.name + " balance" },
+        { old: /Mon périmètre/gi, new: "My Activity Zone" },
         { old: /vérification KYC/gi, new: "Identity Verification (KYC)" },
-        { old: /Mangopay/g, new: "Mangopay (Secure Payment Partner)" },
-        { old: /SCA \(Strong Customer Authentification\)/gi, new: "Secure Banking Auth (SCA)" },
-        { old: /RIB/g, new: "Bank Account Details (IBAN)" },
-
-        // --- Support & Safety (Disputes/Reporting) ---
-        { old: /Signaler un abus/gi, new: "Report a Violation" },
-        { old: /Service Clients/gi, new: "Hi Neighbor Support" },
         { old: /contact@allovoisins.com/gi, new: CONFIG.supportEmail },
-        { old: /réquisition judiciaire/gi, new: "legal warrant" },
-
-        // --- Navigation & Browsers ---
-        { old: /Internet Explorer/g, new: "Unsupported Legacy Browsers (IE)" }
+        { old: /Signaler un abus/gi, new: "Report a Violation" },
+        { old: /Service Clients/gi, new: "Support Team" }
     ];
 
-    function applyFullRebrand() {
-        // 1. TEXT NODES: Handles all the documentation text you provided
+    /**
+     * INJECTEUR CSS (DEBUGUÉ)
+     * Remplace le orange par le bleu et stylise les tableaux KYC
+     */
+    function injectStyles() {
+        if (document.getElementById('hn-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'hn-styles';
+        style.innerHTML = `
+            :root { --hn-blue: ${CONFIG.mainColor}; }
+            
+            /* Couleurs de marque */
+            .brand-color, .btn-primary, header, footer, .search-submit, .button { 
+                background-color: var(--hn-blue) !important; 
+                border-color: var(--hn-blue) !important;
+                color: #ffffff !important;
+            }
+            
+            a { color: var(--hn-blue) !important; }
+
+            /* Mise en forme des tableaux (KYC/Activités réglementées) */
+            table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #eee; }
+            th { background: #f8f9fa; padding: 12px; text-align: left; border-bottom: 2px solid var(--hn-blue); }
+            td { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; }
+
+            /* Suppression visuelle du logo original si nécessaire */
+            img[alt*="AlloVoisins"] { filter: hue-rotate(200deg); } 
+        `;
+        document.head.appendChild(style);
+    }
+
+    /**
+     * MOTEUR DE REMPLACEMENT (DEBUGUÉ)
+     */
+    function runRebrand() {
+        // 1. Textes visibles
         const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
         let node;
         while (node = walker.nextNode()) {
             let text = node.nodeValue;
-            dictionary.forEach(item => {
-                if (text.match(item.old)) {
-                    node.nodeValue = text.replace(item.old, item.new);
+            replacements.forEach(r => {
+                if (text.match(r.old)) {
+                    node.nodeValue = text.replace(r.old, r.new);
                 }
             });
         }
 
-        // 2. INTERACTIVE ELEMENTS: Buttons, Placeholders, Inputs
-        document.querySelectorAll('input, textarea, [placeholder], [title]').forEach(el => {
-            dictionary.forEach(item => {
-                if (el.placeholder) el.placeholder = el.placeholder.replace(item.old, item.new);
-                if (el.title) el.title = el.title.replace(item.old, item.new);
-                if (el.value && el.type === "button") el.value = el.value.replace(item.old, item.new);
+        // 2. Éléments interactifs
+        document.querySelectorAll('input, textarea, [placeholder]').forEach(el => {
+            replacements.forEach(r => {
+                if (el.placeholder) el.placeholder = el.placeholder.replace(r.old, r.new);
+                if (el.value && el.type === "button") el.value = el.value.replace(r.old, r.new);
             });
         });
 
-        // 3. TAB TITLE
+        // 3. Titre de l'onglet
         if (document.title.includes(CONFIG.oldName)) {
-            document.title = document.title.replace(new RegExp(CONFIG.oldName, 'gi'), CONFIG.brandName);
+            document.title = document.title.replace(new RegExp(CONFIG.oldName, 'gi'), CONFIG.name);
         }
-
-        // 4. DYNAMIC CSS INJECTION (Overrides the Orange Identity)
-        if (!document.getElementById('hn-rebrand-css')) {
-            const style = document.createElement('style');
-            style.id = 'hn-rebrand-css';
-            style.innerHTML = `
-                /* Main Brand Color Overrides */
-                :root { --hn-main: ${CONFIG.accentColor}; }
-                header, footer, .btn-primary, .top-bar, .search-submit { background-color: var(--hn-main) !important; }
-                a, .article-list-item a, .breadcrumbs li a { color: var(--hn-main) !important; }
-                
-                /* Style for the KYC/Regulated activities tables you provided */
-                table { width: 100%; border-collapse: collapse; border: 1px solid #ddd; margin: 20px 0; font-family: sans-serif; }
-                th { background-color: #f5f5f5; padding: 12px; text-align: left; border-bottom: 2px solid var(--hn-main); }
-                td { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; }
-                
-                /* Verification Status Badges */
-                .status-badge-premium { background: #FFD700; color: #000; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
-            `;
-            document.head.appendChild(style);
-        }
+        
+        injectStyles();
     }
 
-    // Initialize
-    applyFullRebrand();
-
-    // DOM OBSERVER: Essential for Zendesk/Single Page Apps
-    const observer = new MutationObserver((mutations) => {
-        applyFullRebrand();
+    /**
+     * INITIALISATION ET SURVEILLANCE DYNAMIQUE
+     */
+    runRebrand();
+    
+    // Le MutationObserver permet de maintenir le rebranding même quand on change de page sur Zendesk
+    const observer = new MutationObserver(() => {
+        runRebrand();
     });
-    observer.observe(document.body, { childList: true, subtree: true });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 
-    console.log(CONFIG.brandName + " Rebranding Active.");
 })();
