@@ -18,11 +18,24 @@
         .card-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
         section { scroll-margin-top: 100px; }
         
-        /* Smooth transition for mobile search input */
-        .search-container input focus { box-shadow: 0 0 0 4px rgba(45, 91, 255, 0.1); }
+        /* Bouton Retour en haut */
+        #backToTop {
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-white" id="top">
+
+    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+            class="fixed bottom-8 right-8 z-[100] bg-brand text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:bg-brand-hover hover:-translate-y-1 active:scale-95 transition-all">
+        <i class="fa fa-arrow-up text-xl"></i>
+    </button>
 
     <header class="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-md z-50">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 flex justify-between items-center">
@@ -50,7 +63,7 @@
             <i class="fa fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-lg md:text-xl group-focus-within:text-brand transition-colors"></i>
             <input type="text" 
                    placeholder="Rechercher une réponse..." 
-                   class="w-full py-4 md:py-6 pl-14 pr-6 rounded-2xl text-gray-900 focus:outline-none shadow-2xl text-base md:text-lg transition-all border-2 border-transparent focus:border-blue-300">
+                   class="w-full py-4 md:py-6 pl-14 pr-6 rounded-2xl text-gray-900 focus:outline-none shadow-2xl text-base md:text-lg border-2 border-transparent focus:border-blue-300">
         </div>
     </section>
 
@@ -59,24 +72,24 @@
         <aside class="w-full lg:w-1/4 space-y-8 order-2 lg:order-1">
             <div class="sticky top-28">
                 <div class="mb-8">
-                    <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">L'essentiel</h3>
+                    <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4 text-center lg:text-left">L'essentiel</h3>
                     <nav class="flex flex-col gap-1">
-                        <a href="#demande" class="sidebar-item p-3 text-sm rounded-lg sidebar-item-active">Poster une demande</a>
-                        <a href="#profil" class="sidebar-item p-3 text-sm rounded-lg">Profil & Avis</a>
+                        <a href="#demande" class="sidebar-item p-3 text-sm rounded-lg sidebar-item-active text-center lg:text-left">Poster une demande</a>
+                        <a href="#profil" class="sidebar-item p-3 text-sm rounded-lg text-center lg:text-left">Profil & Avis</a>
                     </nav>
                 </div>
                 <div class="mb-8">
-                    <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Argent</h3>
+                    <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4 text-center lg:text-left">Argent</h3>
                     <nav class="flex flex-col gap-1">
-                        <a href="#paiement" class="sidebar-item p-3 text-sm rounded-lg">Paiements & Remboursements</a>
-                        <a href="#kyc" class="sidebar-item p-3 text-sm rounded-lg">Vérification (KYC)</a>
+                        <a href="#paiement" class="sidebar-item p-3 text-sm rounded-lg text-center lg:text-left">Paiements & Remboursements</a>
+                        <a href="#kyc" class="sidebar-item p-3 text-sm rounded-lg text-center lg:text-left">Vérification (KYC)</a>
                     </nav>
                 </div>
                 <div>
-                    <h3 class="text-[10px] font-bold text-red-400 uppercase tracking-[0.2em] mb-4">Confiance</h3>
+                    <h3 class="text-[10px] font-bold text-red-400 uppercase tracking-[0.2em] mb-4 text-center lg:text-left">Confiance</h3>
                     <nav class="flex flex-col gap-1">
-                        <a href="#securite" class="sidebar-item p-3 text-sm rounded-lg font-bold text-red-600">Signalement & Abus</a>
-                        <a href="#reglemente" class="sidebar-item p-3 text-sm rounded-lg">Activités réglementées</a>
+                        <a href="#securite" class="sidebar-item p-3 text-sm rounded-lg font-bold text-red-600 text-center lg:text-left">Signalement & Abus</a>
+                        <a href="#reglemente" class="sidebar-item p-3 text-sm rounded-lg text-center lg:text-left">Activités réglementées</a>
                     </nav>
                 </div>
             </div>
@@ -86,7 +99,7 @@
 
             <section id="demande">
                 <h2 class="text-2xl md:text-3xl font-black mb-8 italic flex items-center gap-3 uppercase">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic">01</span>
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic shrink-0">01</span>
                     Poster une demande
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -108,7 +121,7 @@
 
             <section id="profil">
                 <h2 class="text-2xl md:text-3xl font-black mb-8 italic flex items-center gap-3 uppercase">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic">02</span>
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic shrink-0">02</span>
                     Profil & Avis
                 </h2>
                 <div class="bg-gray-50 p-6 md:p-10 rounded-[2.5rem]">
@@ -119,7 +132,7 @@
                         </div>
                         <div class="space-y-3">
                             <h4 class="font-bold text-xs uppercase tracking-widest text-brand">Répondre</h4>
-                            <p class="text-xs text-gray-500 italic leading-relaxed">Les réponses aux avis sont publiques. Réfléchissez bien : vous pouvez supprimer mais pas modifier.</p>
+                            <p class="text-xs text-gray-500 italic leading-relaxed">Les réponses aux avis sont publiques. Vous pouvez supprimer mais pas modifier.</p>
                         </div>
                         <div class="space-y-3">
                             <h4 class="font-bold text-xs uppercase tracking-widest text-brand">Gérer</h4>
@@ -131,7 +144,7 @@
 
             <section id="paiement">
                 <h2 class="text-2xl md:text-3xl font-black mb-8 italic flex items-center gap-3 uppercase">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic">03</span>
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic shrink-0">03</span>
                     Paiements
                 </h2>
                 <div class="flex flex-col md:flex-row gap-6">
@@ -152,12 +165,12 @@
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div class="space-y-4">
-                        <h4 class="font-bold text-red-800 italic text-sm uppercase tracking-widest">Urgence</h4>
+                        <h4 class="font-bold text-red-800 italic text-sm uppercase tracking-widest text-center md:text-left">Urgence</h4>
                         <p class="text-sm text-red-700 italic leading-relaxed font-medium">
                             En cas de menace grave, ne perdez pas de temps : contactez le <strong>17</strong> ou le <strong>3018</strong>. Bloquez ensuite le profil.
                         </p>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-4 text-center md:text-left">
                         <h4 class="font-bold text-red-800 italic text-sm uppercase tracking-widest">Signalement</h4>
                         <p class="text-sm text-red-700 italic leading-relaxed">
                             Utilisez les <strong>3 points</strong> sur un message pour nous alerter. Nous appliquons une tolérance zéro pour le harcèlement.
@@ -167,10 +180,10 @@
             </section>
 
             <div class="mt-20 py-16 border-t border-gray-100 text-center">
-                <h3 class="text-xl font-black mb-8 italic text-gray-800">Cet article vous a-t-il aidé ?</h3>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <button class="w-full sm:w-40 py-4 border-2 border-brand text-brand rounded-full font-black hover:bg-brand hover:text-white transition-all">OUI</button>
-                    <button class="w-full sm:w-40 py-4 border-2 border-gray-200 text-gray-400 rounded-full font-black hover:border-gray-800 hover:text-gray-800 transition-all">NON</button>
+                <h3 class="text-xl font-black mb-8 italic text-gray-800 uppercase tracking-tight">Cet article vous a-t-il aidé ?</h3>
+                <div class="flex flex-wrap justify-center gap-4 px-4">
+                    <button class="w-full sm:w-40 py-4 border-2 border-brand text-brand rounded-full font-black hover:bg-brand hover:text-white transition-all uppercase tracking-widest text-xs">OUI</button>
+                    <button class="w-full sm:w-40 py-4 border-2 border-gray-200 text-gray-400 rounded-full font-black hover:border-gray-800 hover:text-gray-800 transition-all uppercase tracking-widest text-xs">NON</button>
                 </div>
             </div>
 
@@ -185,9 +198,21 @@
                 <a href="#" class="hover:text-brand transition-colors">Confidentialité</a>
                 <a href="#" class="hover:text-brand transition-colors">Contact</a>
             </div>
-            <p class="text-[10px] text-gray-300 font-bold tracking-widest uppercase">© 2025 HI NEIGHBOR INTERACTIVE</p>
+            <p class="text-[10px] text-gray-300 font-bold tracking-widest uppercase italic">© 2025 HI NEIGHBOR INTERACTIVE</p>
         </div>
     </footer>
+
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        };
+    </script>
 
 </body>
 </html>
