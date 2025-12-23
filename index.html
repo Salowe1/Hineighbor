@@ -1,89 +1,104 @@
-(function() {
-    const CONFIG = {
-        name: "Hi Neighbor",
-        oldName: "AlloVoisins",
-        mainColor: "#2D5BFF" // Bleu moderne
-    };
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi Neighbor - Centre d'Assistance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --brand: #2D5BFF; }
+        .bg-brand { background-color: var(--brand); }
+        .text-brand { color: var(--brand); }
+        .accordion-content { display: none; }
+        .accordion-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
 
-    function applyDesign() {
-        if (!document.getElementById('hi-neighbor-core-style')) {
-            const style = document.createElement('style');
-            style.id = 'hi-neighbor-core-style';
-            style.innerHTML = `
-                /* 1. FORÇAGE DE LA COULEUR SUR TOUTE LA PLATEFORME */
-                header, footer, .top-bar, .navbar, .btn-primary, button[type="submit"], .search-submit {
-                    background-color: ${CONFIG.mainColor} !important;
-                    background: ${CONFIG.mainColor} !important;
-                    border-color: ${CONFIG.mainColor} !important;
-                }
+    <header class="bg-brand text-white py-12 px-4 shadow-lg">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl font-bold mb-4">Hi Neighbor Support</h1>
+            <p class="text-xl opacity-90 mb-8">Comment pouvons-nous vous aider aujourd'hui ?</p>
+            <div class="relative max-w-xl mx-auto">
+                <input type="text" id="searchInput" placeholder="Rechercher une réponse (ex: KYC, Avis, Paiement)..." 
+                       class="w-full p-4 rounded-full text-gray-900 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-300">
+                <i class="fa fa-search absolute right-5 top-5 text-gray-400"></i>
+            </div>
+        </div>
+    </header>
 
-                /* 2. FORÇAGE SUR LES LIENS ET TEXTES CLÉS */
-                a, .article-list-item a, .breadcrumbs li a, .sub-nav li a {
-                    color: ${CONFIG.mainColor} !important;
-                }
+    <main class="max-w-4xl mx-auto py-12 px-4">
+        
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa fa-star text-brand mr-3"></i> Gestion des Avis</h2>
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                    <button onclick="toggleAccordion('avis1')" class="w-full text-left p-4 font-semibold flex justify-between items-center">
+                        Puis-je répondre à un avis ?
+                        <i class="fa fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div id="avis1" class="accordion-content p-4 border-t border-gray-100 text-gray-600 bg-gray-50">
+                        Oui. Votre réponse sera affichée sous l'avis et visible sur votre profil. Vous pouvez supprimer votre réponse à tout moment (mais pas la modifier).
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                /* 3. STYLE DES TABLEAUX (DOCS KYC ET REGLEMENTATION) */
-                .article-body table {
-                    width: 100% !important;
-                    border-collapse: collapse !important;
-                    border: 1px solid #ddd !important;
-                    margin: 20px 0 !important;
-                }
-                .article-body th {
-                    background-color: #f5f5f5 !important;
-                    color: #333 !important;
-                    padding: 12px !important;
-                    border: 1px solid #ddd !important;
-                }
-                .article-body td {
-                    padding: 10px !important;
-                    border: 1px solid #eee !important;
-                }
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa fa-shield-alt text-brand mr-3"></i> Confiance et Sécurité (KYC)</h2>
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                    <button onclick="toggleAccordion('kyc1')" class="w-full text-left p-4 font-semibold flex justify-between items-center">
+                        Pourquoi mon document KYC est-il refusé ?
+                        <i class="fa fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div id="kyc1" class="accordion-content p-4 border-t border-gray-100 bg-gray-50">
+                        <table class="w-full text-sm">
+                            <tr class="bg-gray-200"><th class="p-2 text-left">Motif</th><th class="p-2 text-left">Solution</th></tr>
+                            <tr><td class="p-2 border-b">Document expiré</td><td class="p-2 border-b">Utilisez une pièce d'identité valide.</td></tr>
+                            <tr><td class="p-2 border-b">Mauvaise qualité</td><td class="p-2 border-b">La photo doit être nette et lisible.</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                /* 4. MASQUAGE DU LOGO ALLOVOISINS POUR LE REMPLACER PAR TEXTE */
-                .logo img, header img[alt*="AlloVoisins"] {
-                    display: none !important;
-                }
-                .logo::after {
-                    content: "${CONFIG.name}";
-                    font-size: 24px;
-                    font-weight: bold;
-                    color: white;
-                    vertical-align: middle;
-                }
-            `;
-            document.head.appendChild(style);
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa fa-gavel text-brand mr-3"></i> Litiges et Signalements</h2>
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <p class="mb-4 text-gray-600">En cas de problème sérieux avec un Neighbor :</p>
+                <ul class="list-disc ml-6 space-y-2 text-gray-600">
+                    <li>Tentez une résolution à l'amiable via la messagerie.</li>
+                    <li>Signalez le profil via les "3 petits points".</li>
+                    <li>Conservez toutes les preuves (captures d'écran).</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 text-center">
+        <p>&copy; 2025 Hi Neighbor - Support Center</p>
+        <p class="text-sm opacity-50 mt-2">Propulsé par GitHub Pages</p>
+    </footer>
+
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.accordion-content').forEach(el => el.classList.remove('active'));
+            if (!isActive) content.classList.add('active');
         }
-    }
 
-    function runReplacement() {
-        // Remplacement des textes (Articles, Titres, Menus)
-        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-        let node;
-        while (node = walker.nextNode()) {
-            let text = node.nodeValue;
-            if (text.includes(CONFIG.oldName)) {
-                node.nodeValue = text.replace(new RegExp(CONFIG.oldName, 'gi'), CONFIG.name);
-            }
-            // Traduction simplifiée des termes Neighbors
-            node.nodeValue = node.nodeValue.replace(/Voisins/g, "Neighbors").replace(/Voisin/g, "Neighbor");
-        }
-
-        // Remplacement dans les champs de recherche (Placeholders)
-        document.querySelectorAll('input, textarea').forEach(el => {
-            if (el.placeholder) el.placeholder = el.placeholder.replace(new RegExp(CONFIG.oldName, 'gi'), CONFIG.name);
+        // Système de recherche simple
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.bg-white').forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(term) ? 'block' : 'none';
+            });
         });
-
-        applyDesign();
-    }
-
-    // Lancement immédiat
-    runReplacement();
-
-    // Surveillance pour les pages qui chargent sans rafraîchir (Zendesk Guide)
-    const observer = new MutationObserver(() => {
-        runReplacement();
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-
-})();
+    </script>
+</body>
+</html>
