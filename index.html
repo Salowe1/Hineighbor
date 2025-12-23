@@ -16,269 +16,176 @@
         .sidebar-item:hover { background-color: var(--brand-light); color: var(--brand); }
         .sidebar-item-active { border-left: 3px solid var(--brand); background-color: var(--brand-light); color: var(--brand); font-weight: 600; }
         .card-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
-        section { scroll-margin-top: 80px; }
+        section { scroll-margin-top: 100px; }
+        
+        /* Smooth transition for mobile search input */
+        .search-container input focus { box-shadow: 0 0 0 4px rgba(45, 91, 255, 0.1); }
     </style>
 </head>
 <body class="bg-white">
 
-    <header class="border-b border-gray-100 sticky top-0 bg-white/90 backdrop-blur-md z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-               <img src="logo.jpg" alt="Hi Neighbor" class="h-10 w-auto object-contain">
+    <header class="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center">
+               <img src="logo.jpg" alt="Hi Neighbor" class="h-10 md:h-12 w-auto object-contain">
             </div>
-            <nav class="hidden md:flex gap-6 text-sm font-semibold">
-                <a href="#demande" class="hover:text-brand">Ma Demande</a>
-                <a href="#paiement" class="hover:text-brand">Paiements</a>
-                <a href="#securite" class="hover:text-brand text-red-500">Sécurité</a>
+            
+            <nav class="hidden lg:flex gap-8 text-sm font-bold uppercase tracking-wider">
+                <a href="#demande" class="hover:text-brand transition-colors">Ma Demande</a>
+                <a href="#paiement" class="hover:text-brand transition-colors">Paiements</a>
+                <a href="#securite" class="hover:text-brand text-red-500 transition-colors">Sécurité</a>
             </nav>
-            <button class="bg-brand text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-brand-hover transition-all">
+
+            <button class="bg-brand text-white text-[10px] md:text-xs font-black px-4 md:px-6 py-3 rounded-full hover:bg-brand-hover transition-all shadow-lg shadow-blue-200">
                 NOUS CONTACTER
             </button>
         </div>
     </header>
 
-    <section class="bg-brand py-16 px-6 text-white text-center">
-        <h1 class="text-4xl font-extrabold mb-4 italic tracking-tight">Comment pouvons-nous vous aider ?</h1>
-        <p class="text-blue-100 mb-8 max-w-xl mx-auto italic">Trouvez toutes les réponses sur les paiements, la sécurité et la gestion de vos avis.</p>
-        <div class="max-w-2xl mx-auto relative">
-            <input type="text" placeholder="Ex: Comment récupérer mon solde, modifier un avis..." class="w-full py-5 px-14 rounded-2xl text-gray-900 focus:outline-none shadow-2xl text-lg">
-            <i class="fa fa-search absolute left-5 top-6 text-gray-400 text-xl"></i>
+    <section class="bg-brand py-12 md:py-20 px-6 text-white text-center">
+        <h1 class="text-3xl md:text-5xl font-black mb-4 italic tracking-tight">Comment pouvons-nous vous aider ?</h1>
+        <p class="text-blue-100 mb-10 max-w-xl mx-auto italic text-sm md:text-base">Trouvez toutes les réponses sur les paiements, la sécurité et la gestion de vos avis.</p>
+        
+        <div class="max-w-2xl mx-auto relative group">
+            <i class="fa fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-lg md:text-xl group-focus-within:text-brand transition-colors"></i>
+            <input type="text" 
+                   placeholder="Rechercher une réponse..." 
+                   class="w-full py-4 md:py-6 pl-14 pr-6 rounded-2xl text-gray-900 focus:outline-none shadow-2xl text-base md:text-lg transition-all border-2 border-transparent focus:border-blue-300">
         </div>
     </section>
 
-    <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:row md:flex-row gap-12">
+    <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-12">
         
-        <aside class="w-full md:w-1/4 space-y-10">
-            <div>
-                <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">L'essentiel du Voisin</h3>
-                <nav class="flex flex-col gap-1">
-                    <a href="#demande" class="sidebar-item p-3 text-sm rounded-r-lg sidebar-item-active">Poster une demande</a>
-                    <a href="#profil" class="sidebar-item p-3 text-sm rounded-r-lg">Profil & Avis</a>
-                </nav>
-            </div>
-            <div>
-                <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Argent & Solde</h3>
-                <nav class="flex flex-col gap-1">
-                    <a href="#paiement" class="sidebar-item p-3 text-sm rounded-r-lg">Paiements & Remboursements</a>
-                    <a href="#kyc" class="sidebar-item p-3 text-sm rounded-r-lg">Vérification d'identité (KYC)</a>
-                </nav>
-            </div>
-            <div>
-                <h3 class="text-[10px] font-bold text-red-400 uppercase tracking-[0.2em] mb-4">Sécurité & Confiance</h3>
-                <nav class="flex flex-col gap-1">
-                    <a href="#securite" class="sidebar-item p-3 text-sm rounded-r-lg font-bold text-red-600">Signalement & Abus</a>
-                    <a href="#reglemente" class="sidebar-item p-3 text-sm rounded-r-lg">Activités réglementées</a>
-                    <a href="#mobile" class="sidebar-item p-3 text-sm rounded-r-lg">Vérification Mobile</a>
-                </nav>
+        <aside class="w-full lg:w-1/4 space-y-8 order-2 lg:order-1">
+            <div class="sticky top-28">
+                <div class="mb-8">
+                    <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">L'essentiel</h3>
+                    <nav class="flex flex-col gap-1">
+                        <a href="#demande" class="sidebar-item p-3 text-sm rounded-lg sidebar-item-active">Poster une demande</a>
+                        <a href="#profil" class="sidebar-item p-3 text-sm rounded-lg">Profil & Avis</a>
+                    </nav>
+                </div>
+                <div class="mb-8">
+                    <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Argent</h3>
+                    <nav class="flex flex-col gap-1">
+                        <a href="#paiement" class="sidebar-item p-3 text-sm rounded-lg">Paiements & Remboursements</a>
+                        <a href="#kyc" class="sidebar-item p-3 text-sm rounded-lg">Vérification (KYC)</a>
+                    </nav>
+                </div>
+                <div>
+                    <h3 class="text-[10px] font-bold text-red-400 uppercase tracking-[0.2em] mb-4">Confiance</h3>
+                    <nav class="flex flex-col gap-1">
+                        <a href="#securite" class="sidebar-item p-3 text-sm rounded-lg font-bold text-red-600">Signalement & Abus</a>
+                        <a href="#reglemente" class="sidebar-item p-3 text-sm rounded-lg">Activités réglementées</a>
+                    </nav>
+                </div>
             </div>
         </aside>
 
-        <div class="w-full md:w-3/4 space-y-20">
+        <div class="w-full lg:w-3/4 space-y-24 order-1 lg:order-2">
 
             <section id="demande">
-                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">01</span>
+                <h2 class="text-2xl md:text-3xl font-black mb-8 italic flex items-center gap-3 uppercase">
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic">01</span>
                     Poster une demande
                 </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-6 border border-gray-100 rounded-2xl card-shadow">
-                        <h4 class="font-bold mb-3 italic text-brand">Règles d'or</h4>
-                        <ul class="text-sm space-y-3 text-gray-600 italic">
-                            <li>• <strong>Demandes uniquement :</strong> Ne postez pas d'offres de services ici.</li>
-                            <li>• <strong>Sécurité :</strong> Pas de coordonnées (téléphone, mail) directes.</li>
-                            <li>• <strong>Légalité :</strong> Objets acquis légalement uniquement.</li>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-8 border border-gray-100 rounded-3xl card-shadow bg-white">
+                        <h4 class="font-bold mb-4 italic text-brand uppercase text-xs tracking-widest">Règles d'or</h4>
+                        <ul class="text-sm space-y-4 text-gray-600 italic">
+                            <li class="flex items-start gap-2">• <span><strong>Demandes uniquement :</strong> Ne postez pas d'offres ici.</span></li>
+                            <li class="flex items-start gap-2">• <span><strong>Sécurité :</strong> Pas de téléphone ou mail en public.</span></li>
                         </ul>
                     </div>
-                    <div class="p-6 border border-gray-100 rounded-2xl card-shadow">
-                        <h4 class="font-bold mb-3 italic text-brand">Astuces de validation</h4>
+                    <div class="p-8 border border-gray-100 rounded-3xl card-shadow bg-blue-50/50">
+                        <h4 class="font-bold mb-4 italic text-brand uppercase text-xs tracking-widest">Localisation</h4>
                         <p class="text-sm text-gray-600 italic leading-relaxed">
-                            Si votre catégorie n'existe pas, choisissez la plus proche et faites une "Suggestion" via le formulaire. 
-                            Vous pouvez aussi <strong>changer l'adresse</strong> de votre demande sans modifier votre profil (pratique pour les vacances !).
+                            Vous pouvez <strong>changer l'adresse</strong> de votre demande sans modifier votre profil définitif. Idéal pour vos besoins en déplacement !
                         </p>
                     </div>
                 </div>
             </section>
 
             <section id="profil">
-                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">02</span>
+                <h2 class="text-2xl md:text-3xl font-black mb-8 italic flex items-center gap-3 uppercase">
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic">02</span>
                     Profil & Avis
                 </h2>
-                <div class="bg-gray-50 p-8 rounded-3xl">
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div>
-                            <h4 class="font-bold text-sm uppercase mb-4 tracking-wider">Consulter</h4>
-                            <p class="text-xs text-gray-500 italic">Cliquez sur le prénom ou la photo d'un voisin pour voir son taux de réponse, ses photos et ses avis globaux.</p>
+                <div class="bg-gray-50 p-6 md:p-10 rounded-[2.5rem]">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <div class="space-y-3">
+                            <h4 class="font-bold text-xs uppercase tracking-widest text-brand">Consulter</h4>
+                            <p class="text-xs text-gray-500 italic leading-relaxed">Cliquez sur la photo d'un voisin pour voir son taux de réponse et ses avis passés.</p>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-sm uppercase mb-4 tracking-wider">Répondre</h4>
-                            <p class="text-xs text-gray-500 italic">Vous pouvez répondre à un avis reçu. La réponse est publique. Vous pouvez la supprimer (via les 3 points) mais pas la modifier.</p>
+                        <div class="space-y-3">
+                            <h4 class="font-bold text-xs uppercase tracking-widest text-brand">Répondre</h4>
+                            <p class="text-xs text-gray-500 italic leading-relaxed">Les réponses aux avis sont publiques. Réfléchissez bien : vous pouvez supprimer mais pas modifier.</p>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-sm uppercase mb-4 tracking-wider">Modifier</h4>
-                            <p class="text-xs text-gray-500 italic">En tant qu'auteur d'un avis, vous pouvez le modifier à tout moment via l'icône <i class="fa fa-plus-circle"></i> dans la conversation.</p>
+                        <div class="space-y-3">
+                            <h4 class="font-bold text-xs uppercase tracking-widest text-brand">Gérer</h4>
+                            <p class="text-xs text-gray-500 italic leading-relaxed">Modifiez vos propres avis via l'icône <i class="fa fa-plus-circle mx-1"></i> dans vos messages.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section id="paiement">
-                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">03</span>
-                    Paiements & Remboursements
+                <h2 class="text-2xl md:text-3xl font-black mb-8 italic flex items-center gap-3 uppercase">
+                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic">03</span>
+                    Paiements
                 </h2>
-                <div class="space-y-6">
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <div class="flex-1 bg-blue-600 text-white p-8 rounded-3xl">
-                            <h4 class="text-2xl font-black mb-4 italic">0% Commission</h4>
-                            <p class="text-sm text-blue-100 italic leading-relaxed">
-                                Le paiement par CB sur la messagerie est gratuit et sécurisé. L'offreur reçoit les fonds instantanément sur son solde Hi Neighbor.
-                            </p>
-                        </div>
-                        <div class="flex-1 border p-8 rounded-3xl">
-                            <h4 class="text-2xl font-black mb-4 italic text-gray-900">Remboursement</h4>
-                            <p class="text-sm text-gray-500 italic leading-relaxed">
-                                Le voisin peut vous rembourser immédiatement depuis la messagerie en utilisant son propre solde si la prestation est annulée.
-                            </p>
-                        </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex-1 bg-brand text-white p-8 rounded-3xl shadow-xl shadow-blue-100">
+                        <h4 class="text-xl font-black mb-3 italic">Zéro Commission</h4>
+                        <p class="text-sm text-blue-100 italic leading-relaxed">Paiement par CB gratuit. L'argent arrive instantanément sur votre solde interne.</p>
                     </div>
-                    <div class="bg-orange-50 border border-orange-100 p-6 rounded-2xl flex gap-4">
-                        <i class="fa fa-shield-halved text-orange-500 text-2xl"></i>
-                        <div>
-                            <h4 class="font-bold text-orange-800 text-sm italic">Sécurité Bancaire SCA (PSD2)</h4>
-                            <p class="text-xs text-orange-700 italic mt-1">
-                                Pour tout ajout de RIB ou virement, un lien de confirmation vous sera envoyé par mail/push. <strong>Attention : le lien expire après 10 minutes.</strong>
-                            </p>
-                        </div>
+                    <div class="flex-1 border-2 border-dashed border-gray-200 p-8 rounded-3xl">
+                        <h4 class="text-xl font-black mb-3 italic text-gray-800">Remboursements</h4>
+                        <p class="text-sm text-gray-500 italic leading-relaxed">Annulation ? Le voisin peut reverser les fonds en un clic depuis son solde.</p>
                     </div>
                 </div>
             </section>
 
-            <section id="kyc">
-                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">04</span>
-                    Vérification d'identité (KYC)
+            <section id="securite" class="bg-red-50 p-8 md:p-12 rounded-[3rem] border border-red-100">
+                <h2 class="text-2xl md:text-3xl font-black text-red-600 mb-8 italic flex items-center gap-3 uppercase">
+                    <i class="fa fa-shield-virus"></i> Sécurité & Abus
                 </h2>
-                <div class="border rounded-3xl overflow-hidden">
-                    <div class="p-8 bg-gray-900 text-white">
-                        <p class="text-sm italic opacity-80">Réglementation européenne obligatoire pour transférer votre solde vers votre compte bancaire.</p>
-                    </div>
-                    <div class="p-8 grid md:grid-cols-2 gap-10">
-                        <div>
-                            <h4 class="font-bold mb-4 italic underline">Documents acceptés</h4>
-                            <ul class="text-sm space-y-2 text-gray-600 italic">
-                                <li>• Carte d'identité (Recto/Verso)</li>
-                                <li>• Passeport (Double page)</li>
-                                <li>• Permis de conduire (Nouveau format)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold mb-4 italic underline">Pourquoi un refus ?</h4>
-                            <ul class="text-sm space-y-2 text-gray-600 italic">
-                                <li>• <strong>Qualité :</strong> Photo floue, flash ou reflets.</li>
-                                <li>• <strong>Format :</strong> Utilisez JPG/PNG (évitez le PDF).</li>
-                                <li>• <strong>Données :</strong> Vos infos Hi Neighbor doivent être 100% identiques au document.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="securite" class="bg-red-50 p-10 rounded-[3rem] border border-red-100">
-                <h2 class="text-3xl font-black text-red-600 mb-8 italic flex items-center gap-3">
-                    <i class="fa fa-warning"></i> Signalement & Abus
-                </h2>
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div class="space-y-4">
-                        <h4 class="font-bold text-red-800 italic underline">Harcèlement ou Arnaque</h4>
-                        <p class="text-sm text-red-700 italic leading-relaxed">
-                            Cessez toute communication. Ne donnez jamais vos coordonnées hors plateforme (WhatsApp/Email). 
-                            En cas d'urgence ou menace grave, contactez le <strong>17</strong> ou le <strong>3018</strong>.
+                        <h4 class="font-bold text-red-800 italic text-sm uppercase tracking-widest">Urgence</h4>
+                        <p class="text-sm text-red-700 italic leading-relaxed font-medium">
+                            En cas de menace grave, ne perdez pas de temps : contactez le <strong>17</strong> ou le <strong>3018</strong>. Bloquez ensuite le profil.
                         </p>
-                        <div class="bg-white p-4 rounded-xl border border-red-200">
-                            <p class="text-xs font-bold text-red-600 italic">Sanctions possibles :</p>
-                            <p class="text-[10px] text-gray-500 uppercase mt-1">Avertissement > Surveillance > Suspension 12 mois</p>
-                        </div>
                     </div>
                     <div class="space-y-4">
-                        <h4 class="font-bold text-red-800 italic underline">Comment signaler ?</h4>
+                        <h4 class="font-bold text-red-800 italic text-sm uppercase tracking-widest">Signalement</h4>
                         <p class="text-sm text-red-700 italic leading-relaxed">
-                            Cliquez sur les <strong>3 petits points</strong> sur n'importe quel contenu (profil, message, photo) et choisissez "Signaler un abus".
-                        </p>
-                        <ul class="text-xs space-y-2 text-red-700 italic font-medium">
-                            <li>• Capturez des preuves (screenshots)</li>
-                            <li>• Bloquez l'utilisateur immédiatement</li>
-                            <li>• Signalez sur internet-signalement.gouv.fr</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section id="reglemente">
-                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">05</span>
-                    Activités Réglementées
-                </h2>
-                <div class="prose max-w-none text-sm text-gray-600 italic leading-relaxed space-y-4">
-                    <p>Certains services ne peuvent être proposés que par des professionnels certifiés :</p>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="border-l-4 border-brand p-4 bg-gray-50">
-                            <h5 class="font-bold text-gray-900">Santé & Bien-être</h5>
-                            <p class="text-xs">Médecine, Ostéopathie, Infirmerie, Optique : réservés aux diplômés d'État.</p>
-                        </div>
-                        <div class="border-l-4 border-brand p-4 bg-gray-50">
-                            <h5 class="font-bold text-gray-900">Droit & Finance</h5>
-                            <p class="text-xs">Expert-comptable, Conseil juridique, Courtier en assurance : professions strictement encadrées.</p>
-                        </div>
-                        <div class="border-l-4 border-brand p-4 bg-gray-50">
-                            <h5 class="font-bold text-gray-900">Bâtiment</h5>
-                            <p class="text-xs">Plombier, Électricien, Maçon : nécessitent une qualification (CAP/BEP) ou 3 ans d'expérience.</p>
-                        </div>
-                        <div class="border-l-4 border-brand p-4 bg-gray-50">
-                            <h5 class="font-bold text-gray-900">Transport & Animaux</h5>
-                            <p class="text-xs">Déménagement pro, Garde d'animaux (ACACED obligatoire), Covoiturage rémunéré.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="mobile">
-                <h2 class="text-3xl font-black mb-8 italic flex items-center gap-3">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-sm italic">06</span>
-                    Vérification Mobile
-                </h2>
-                <div class="bg-brand text-white p-10 rounded-[2rem] flex flex-col md:flex-row gap-10 items-center">
-                    <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-4 italic">Accès à la messagerie</h4>
-                        <p class="text-sm text-blue-100 italic">
-                            Pour communiquer, vous devez valider votre mobile français. Votre numéro reste privé (sauf abonnés Premier).
+                            Utilisez les <strong>3 points</strong> sur un message pour nous alerter. Nous appliquons une tolérance zéro pour le harcèlement.
                         </p>
                     </div>
-                    <div class="flex-1 space-y-3">
-                        <div class="bg-white/10 p-4 rounded-xl text-xs italic">1. Menu Compte > Infos Personnelles</div>
-                        <div class="bg-white/10 p-4 rounded-xl text-xs italic">2. Entrez votre mobile (SMS envoyé)</div>
-                        <div class="bg-white/10 p-4 rounded-xl text-xs italic">3. Saisissez le code à 4 chiffres</div>
-                    </div>
                 </div>
             </section>
 
-            <div class="mt-20 py-12 border-t text-center">
-                <h3 class="text-lg font-bold mb-6 italic">Cet article vous a-t-il été utile ?</h3>
-                <div class="flex justify-center gap-4">
-                    <button class="px-10 py-3 border-2 border-brand text-brand rounded-full font-black hover:bg-brand hover:text-white transition-all">OUI</button>
-                    <button class="px-10 py-3 border-2 border-gray-200 text-gray-400 rounded-full font-black hover:border-gray-800 hover:text-gray-800 transition-all">NON</button>
+            <div class="mt-20 py-16 border-t border-gray-100 text-center">
+                <h3 class="text-xl font-black mb-8 italic text-gray-800">Cet article vous a-t-il aidé ?</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="w-full sm:w-40 py-4 border-2 border-brand text-brand rounded-full font-black hover:bg-brand hover:text-white transition-all">OUI</button>
+                    <button class="w-full sm:w-40 py-4 border-2 border-gray-200 text-gray-400 rounded-full font-black hover:border-gray-800 hover:text-gray-800 transition-all">NON</button>
                 </div>
-                <p class="mt-8 text-xs text-gray-400 font-bold uppercase tracking-[0.2em]">Vous n'avez pas trouvé ? <a href="#" class="text-brand underline">Contactez-nous</a></p>
             </div>
 
         </div>
     </div>
 
-    <footer class="bg-gray-50 border-t py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <span class="text-2xl font-black italic tracking-tighter text-brand">HI NEIGHBOR</span>
-            
-            <p class="text-[10px] text-gray-400 font-bold">© 2025 HI NEIGHBOR </p>
+    <footer class="bg-gray-50 border-t py-16 mt-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-8">
+            <img src="logo.jpg" alt="Hi Neighbor" class="h-10 opacity-60 grayscale hover:grayscale-0 transition-all">
+            <div class="flex flex-wrap justify-center gap-8 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+                <a href="#" class="hover:text-brand transition-colors">Conditions</a>
+                <a href="#" class="hover:text-brand transition-colors">Confidentialité</a>
+                <a href="#" class="hover:text-brand transition-colors">Contact</a>
+            </div>
+            <p class="text-[10px] text-gray-300 font-bold tracking-widest uppercase">© 2025 HI NEIGHBOR INTERACTIVE</p>
         </div>
     </footer>
 
