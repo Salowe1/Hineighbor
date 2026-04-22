@@ -3,216 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centre d'Aide Intégral – Hi Neighbor</title>
+    <title>High Tech Materials | Votre Partenaire Informatique</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        :root { --brand: #2D5BFF; --brand-hover: #1A44D6; --brand-light: #F2F8FF; --danger: #EF4444; }
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; color: #1f2937; }
-        .bg-brand { background-color: var(--brand); }
-        .text-brand { color: var(--brand); }
-        .sidebar-item { border-left: 3px solid transparent; transition: all 0.2s; cursor: pointer; display: block; text-decoration: none; color: #6b7280; }
-        .sidebar-item:hover { background-color: var(--brand-light); color: var(--brand); }
-        .sidebar-item-active { border-left: 3px solid var(--brand); background-color: var(--brand-light); color: var(--brand); font-weight: 600; }
-        .card-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
-        section { scroll-margin-top: 100px; }
-        
-        /* Bouton Retour en haut */
-        #backToTop {
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-        }
-        #backToTop.show {
-            opacity: 1;
-            visibility: visible;
-        }
+        html { scroll-behavior: smooth; }
+        .brand-blue { color: #0070BB; }
+        .bg-brand-blue { background-color: #0070BB; }
+        .brand-yellow { color: #FFD700; }
+        .bg-brand-yellow { background-color: #FFD700; }
+        .product-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
     </style>
 </head>
-<body class="bg-white" id="top">
+<body class="bg-gray-50 text-gray-800">
 
-    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
-            class="fixed bottom-8 right-8 z-[100] bg-brand text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:bg-brand-hover hover:-translate-y-1 active:scale-95 transition-all">
-        <i class="fa fa-arrow-up text-xl"></i>
-    </button>
-
-    <header class="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-md z-50">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 flex justify-between items-center">
+    <nav class="bg-white shadow-lg fixed w-full z-50 border-b-4 border-brand-yellow">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center">
-               <img src="logo.jpg" alt="Hi Neighbor" class="h-10 md:h-12 w-auto object-contain">
+                <span class="text-3xl font-black brand-blue tracking-tighter">HTM</span>
+                <div class="ml-3 pl-3 border-l-2 border-gray-200 hidden sm:block">
+                    <p class="text-xs font-bold brand-blue leading-tight uppercase">High Tech Materials</p>
+                    <p class="text-[10px] text-gray-500 uppercase">Expertise & Innovation</p>
+                </div>
             </div>
-            
-            <nav class="hidden lg:flex gap-8 text-sm font-bold uppercase tracking-wider">
-                <a href="#demande" class="hover:text-brand transition-colors">Ma Demande</a>
-                <a href="#paiement" class="hover:text-brand transition-colors">Paiements</a>
-                <a href="#securite" class="hover:text-brand text-red-500 transition-colors">Sécurité</a>
-            </nav>
-
-            <button class="bg-brand text-white text-[10px] md:text-xs font-black px-4 md:px-6 py-3 rounded-full hover:bg-brand-hover transition-all shadow-lg shadow-blue-200">
-                NOUS CONTACTER
-            </button>
+            <div class="hidden md:flex space-x-8 font-semibold uppercase text-sm">
+                <a href="#accueil" class="hover:brand-blue transition">Accueil</a>
+                <a href="#produits" class="hover:brand-blue transition">Matériels</a>
+                <a href="#logiciels" class="hover:brand-blue transition">Licences</a>
+                <a href="#services" class="hover:brand-blue transition">Maintenance & Réseau</a>
+                <a href="#contact" class="hover:brand-blue transition">Contact</a>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <section class="bg-brand py-12 md:py-20 px-6 text-white text-center">
-        <h1 class="text-3xl md:text-5xl font-black mb-4 italic tracking-tight">Comment pouvons-nous vous aider ?</h1>
-        <p class="text-blue-100 mb-10 max-w-xl mx-auto italic text-sm md:text-base">Trouvez toutes les réponses sur les paiements, la sécurité et la gestion de vos avis.</p>
-        
-        <div class="max-w-2xl mx-auto relative group">
-            <i class="fa fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-lg md:text-xl group-focus-within:text-brand transition-colors"></i>
-            <input type="text" 
-                   placeholder="Rechercher une réponse..." 
-                   class="w-full py-4 md:py-6 pl-14 pr-6 rounded-2xl text-gray-900 focus:outline-none shadow-2xl text-base md:text-lg border-2 border-transparent focus:border-blue-300">
+    <section id="accueil" class="pt-32 pb-20 bg-brand-blue text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-brand-yellow opacity-10 skew-x-12 transform translate-x-20"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Maintenance - Réseau - Vidéo Surveillance</h1>
+                <p class="text-xl mb-8 opacity-90">Vente de matériel informatique de pointe et solutions logicielles authentiques à Ouagadougou.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="bg-brand-yellow text-blue-900 px-8 py-3 rounded font-bold hover:brightness-110 transition shadow-lg">Demander un devis</a>
+                    <a href="#produits" class="border-2 border-white px-8 py-3 rounded font-bold hover:bg-white hover:text-blue-900 transition">Nos Produits</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-12">
-        
-        <aside class="w-full lg:w-1/4 space-y-8 order-2 lg:order-1">
-            <div class="sticky top-28">
-                <div class="mb-8">
-                    <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4 text-center lg:text-left">L'essentiel</h3>
-                    <nav class="flex flex-col gap-1">
-                        <a href="#demande" class="sidebar-item p-3 text-sm rounded-lg sidebar-item-active text-center lg:text-left">Poster une demande</a>
-                        <a href="#profil" class="sidebar-item p-3 text-sm rounded-lg text-center lg:text-left">Profil & Avis</a>
-                    </nav>
+    <section id="produits" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold uppercase brand-blue">Vente de Matériels</h2>
+                <div class="h-1 w-20 bg-brand-yellow mx-auto mt-2"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="product-card bg-white p-6 rounded shadow border-t-4 border-brand-blue text-center">
+                    <i class="fas fa-laptop text-4xl mb-4 brand-blue"></i>
+                    <h3 class="font-bold mb-2">Ordinateurs Portables</h3>
+                    <p class="text-xs text-gray-500">HP, Dell, Lenovo, MacBook</p>
                 </div>
-                <div class="mb-8">
-                    <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4 text-center lg:text-left">Argent</h3>
-                    <nav class="flex flex-col gap-1">
-                        <a href="#paiement" class="sidebar-item p-3 text-sm rounded-lg text-center lg:text-left">Paiements & Remboursements</a>
-                        <a href="#kyc" class="sidebar-item p-3 text-sm rounded-lg text-center lg:text-left">Vérification (KYC)</a>
-                    </nav>
+                <div class="product-card bg-white p-6 rounded shadow border-t-4 border-brand-blue text-center">
+                    <i class="fas fa-desktop text-4xl mb-4 brand-blue"></i>
+                    <h3 class="font-bold mb-2">PC de Bureau & All-in-One</h3>
+                    <p class="text-xs text-gray-500">Solutions fixes complètes</p>
                 </div>
-                <div>
-                    <h3 class="text-[10px] font-bold text-red-400 uppercase tracking-[0.2em] mb-4 text-center lg:text-left">Confiance</h3>
-                    <nav class="flex flex-col gap-1">
-                        <a href="#securite" class="sidebar-item p-3 text-sm rounded-lg font-bold text-red-600 text-center lg:text-left">Signalement & Abus</a>
-                        <a href="#reglemente" class="sidebar-item p-3 text-sm rounded-lg text-center lg:text-left">Activités réglementées</a>
-                    </nav>
+                <div class="product-card bg-white p-6 rounded shadow border-t-4 border-brand-blue text-center">
+                    <i class="fas fa-print text-4xl mb-4 brand-blue"></i>
+                    <h3 class="font-bold mb-2">Imprimantes & Copieurs</h3>
+                    <p class="text-xs text-gray-500">Laser, Jet d'encre, Multifonctions</p>
+                </div>
+                <div class="product-card bg-white p-6 rounded shadow border-t-4 border-brand-blue text-center">
+                    <i class="fas fa-hdd text-4xl mb-4 brand-blue"></i>
+                    <h3 class="font-bold mb-2">Stockage & Display</h3>
+                    <p class="text-xs text-gray-500">Disques durs, Clés USB, Écrans 4K</p>
                 </div>
             </div>
-        </aside>
-
-        <div class="w-full lg:w-3/4 space-y-24 order-1 lg:order-2">
-
-            <section id="demande">
-                <h2 class="text-2xl md:text-3xl font-black mb-8 italic flex items-center gap-3 uppercase">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic shrink-0">01</span>
-                    Poster une demande
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="p-8 border border-gray-100 rounded-3xl card-shadow bg-white">
-                        <h4 class="font-bold mb-4 italic text-brand uppercase text-xs tracking-widest">Règles d'or</h4>
-                        <ul class="text-sm space-y-4 text-gray-600 italic">
-                            <li class="flex items-start gap-2">• <span><strong>Demandes uniquement :</strong> Ne postez pas d'offres ici.</span></li>
-                            <li class="flex items-start gap-2">• <span><strong>Sécurité :</strong> Pas de téléphone ou mail en public.</span></li>
-                        </ul>
-                    </div>
-                    <div class="p-8 border border-gray-100 rounded-3xl card-shadow bg-blue-50/50">
-                        <h4 class="font-bold mb-4 italic text-brand uppercase text-xs tracking-widest">Localisation</h4>
-                        <p class="text-sm text-gray-600 italic leading-relaxed">
-                            Vous pouvez <strong>changer l'adresse</strong> de votre demande sans modifier votre profil définitif. Idéal pour vos besoins en déplacement !
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="profil">
-                <h2 class="text-2xl md:text-3xl font-black mb-8 italic flex items-center gap-3 uppercase">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic shrink-0">02</span>
-                    Profil & Avis
-                </h2>
-                <div class="bg-gray-50 p-6 md:p-10 rounded-[2.5rem]">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                        <div class="space-y-3">
-                            <h4 class="font-bold text-xs uppercase tracking-widest text-brand">Consulter</h4>
-                            <p class="text-xs text-gray-500 italic leading-relaxed">Cliquez sur la photo d'un voisin pour voir son taux de réponse et ses avis passés.</p>
-                        </div>
-                        <div class="space-y-3">
-                            <h4 class="font-bold text-xs uppercase tracking-widest text-brand">Répondre</h4>
-                            <p class="text-xs text-gray-500 italic leading-relaxed">Les réponses aux avis sont publiques. Vous pouvez supprimer mais pas modifier.</p>
-                        </div>
-                        <div class="space-y-3">
-                            <h4 class="font-bold text-xs uppercase tracking-widest text-brand">Gérer</h4>
-                            <p class="text-xs text-gray-500 italic leading-relaxed">Modifiez vos propres avis via l'icône <i class="fa fa-plus-circle mx-1"></i> dans vos messages.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="paiement">
-                <h2 class="text-2xl md:text-3xl font-black mb-8 italic flex items-center gap-3 uppercase">
-                    <span class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg text-xs italic shrink-0">03</span>
-                    Paiements
-                </h2>
-                <div class="flex flex-col md:flex-row gap-6">
-                    <div class="flex-1 bg-brand text-white p-8 rounded-3xl shadow-xl shadow-blue-100">
-                        <h4 class="text-xl font-black mb-3 italic">Zéro Commission</h4>
-                        <p class="text-sm text-blue-100 italic leading-relaxed">Paiement par CB gratuit. L'argent arrive instantanément sur votre solde interne.</p>
-                    </div>
-                    <div class="flex-1 border-2 border-dashed border-gray-200 p-8 rounded-3xl">
-                        <h4 class="text-xl font-black mb-3 italic text-gray-800">Remboursements</h4>
-                        <p class="text-sm text-gray-500 italic leading-relaxed">Annulation ? Le voisin peut reverser les fonds en un clic depuis son solde.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="securite" class="bg-red-50 p-8 md:p-12 rounded-[3rem] border border-red-100">
-                <h2 class="text-2xl md:text-3xl font-black text-red-600 mb-8 italic flex items-center gap-3 uppercase">
-                    <i class="fa fa-shield-virus"></i> Sécurité & Abus
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="space-y-4">
-                        <h4 class="font-bold text-red-800 italic text-sm uppercase tracking-widest text-center md:text-left">Urgence</h4>
-                        <p class="text-sm text-red-700 italic leading-relaxed font-medium">
-                            En cas de menace grave, ne perdez pas de temps : contactez le <strong>17</strong> ou le <strong>3018</strong>. Bloquez ensuite le profil.
-                        </p>
-                    </div>
-                    <div class="space-y-4 text-center md:text-left">
-                        <h4 class="font-bold text-red-800 italic text-sm uppercase tracking-widest">Signalement</h4>
-                        <p class="text-sm text-red-700 italic leading-relaxed">
-                            Utilisez les <strong>3 points</strong> sur un message pour nous alerter. Nous appliquons une tolérance zéro pour le harcèlement.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <div class="mt-20 py-16 border-t border-gray-100 text-center">
-                <h3 class="text-xl font-black mb-8 italic text-gray-800 uppercase tracking-tight">Cet article vous a-t-il aidé ?</h3>
-                <div class="flex flex-wrap justify-center gap-4 px-4">
-                    <button class="w-full sm:w-40 py-4 border-2 border-brand text-brand rounded-full font-black hover:bg-brand hover:text-white transition-all uppercase tracking-widest text-xs">OUI</button>
-                    <button class="w-full sm:w-40 py-4 border-2 border-gray-200 text-gray-400 rounded-full font-black hover:border-gray-800 hover:text-gray-800 transition-all uppercase tracking-widest text-xs">NON</button>
-                </div>
-            </div>
-
         </div>
-    </div>
+    </section>
 
-    <footer class="bg-gray-50 border-t py-16 mt-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-8">
-            <img src="logo.jpg" alt="Hi Neighbor" class="h-10 opacity-60 grayscale hover:grayscale-0 transition-all">
-            <div class="flex flex-wrap justify-center gap-8 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
-                <a href="#" class="hover:text-brand transition-colors">Conditions</a>
-                <a href="#" class="hover:text-brand transition-colors">Confidentialité</a>
-                <a href="#" class="hover:text-brand transition-colors">Contact</a>
+    <section id="logiciels" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold brand-blue mb-6">Licences Logicielles Authentiques</h2>
+                    <p class="mb-6">Nous fournissons des licences officielles pour garantir la sécurité et la conformité de vos outils de travail.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded border-l-4 border-green-500 shadow-sm">
+                            <h4 class="font-bold">Kaspersky Plus</h4>
+                            <p class="text-sm text-gray-600 italic">Protection antivirus premium</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border-l-4 border-orange-500 shadow-sm">
+                            <h4 class="font-bold">Microsoft Office</h4>
+                            <p class="text-sm text-gray-600 italic">Pack authentique 2021 / 365</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 bg-white p-8 rounded-lg shadow-xl border-2 border-brand-blue">
+                    <h3 class="text-xl font-bold mb-4 text-center">Maintenance & Support</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start"><i class="fas fa-tools mt-1 mr-3 brand-blue"></i> <span>Réparation et entretien de parc informatique.</span></li>
+                        <li class="flex items-start"><i class="fas fa-network-wired mt-1 mr-3 brand-blue"></i> <span>Installation et configuration de réseaux locaux.</span></li>
+                        <li class="flex items-start"><i class="fas fa-video mt-1 mr-3 brand-blue"></i> <span>Installation de systèmes de vidéo-surveillance.</span></li>
+                    </ul>
+                </div>
             </div>
-            <p class="text-[10px] text-gray-300 font-bold tracking-widest uppercase italic">© 2025 HI NEIGHBOR INTERACTIVE</p>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto bg-white shadow-2xl rounded-xl overflow-hidden flex flex-wrap">
+                <div class="w-full md:w-1/3 bg-brand-blue p-10 text-white">
+                    <h3 class="text-2xl font-bold mb-8">Coordonnées</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-phone-alt mr-4 brand-yellow"></i>
+                            <span>+226 63 81 21 09<br>+226 55 53 04 14</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-4 brand-yellow"></i>
+                            <span class="text-sm">pagabelempaul12@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-4 brand-yellow"></i>
+                            <span>Ouahigouya / Ouagadougou<br>Burkina Faso</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 p-10">
+                    <h3 class="text-2xl font-bold mb-6 brand-blue">Envoyez-nous votre demande</h3>
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Votre Nom" class="p-3 border rounded">
+                        <input type="text" placeholder="Votre Téléphone" class="p-3 border rounded">
+                        <div class="md:col-span-2">
+                            <select class="w-full p-3 border rounded">
+                                <option>Type de service souhaité...</option>
+                                <option>Achat de Matériel</option>
+                                <option>Achat de Licence (Antivirus/Office)</option>
+                                <option>Maintenance / Réparation</option>
+                                <option>Réseau / Vidéo Surveillance</option>
+                            </select>
+                        </div>
+                        <textarea class="md:col-span-2 p-3 border rounded h-32" placeholder="Détails de votre besoin..."></textarea>
+                        <button class="md:col-span-2 bg-brand-yellow text-blue-900 font-bold py-3 rounded uppercase hover:bg-yellow-400 transition">Valider la demande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold mb-4">HIGH TECH MATERIALS</h2>
+            <p class="text-gray-400 text-sm mb-6 uppercase tracking-widest">Commerce Général - Informatique - Réseaux</p>
+            <div class="flex justify-center space-x-4 mb-8">
+                <span class="text-xs bg-gray-800 px-3 py-1 rounded">IFU : 00208542E</span>
+                <span class="text-xs bg-gray-800 px-3 py-1 rounded">RCCM : BF-DJB-01-2023-A1000029</span>
+            </div>
+            <p class="text-gray-500 text-xs">© 2026 HTM. Tous droits réservés.</p>
         </div>
     </footer>
-
-    <script>
-        const backToTop = document.getElementById('backToTop');
-        
-        window.onscroll = function() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        };
-    </script>
 
 </body>
 </html>
